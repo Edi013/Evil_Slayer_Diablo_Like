@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyFollowsPlayer : MonoBehaviour
 {
     public Transform target; 
-    public NavMeshAgent agent;
+    NavMeshAgent agent;
 
     void Start()
     {
