@@ -19,7 +19,7 @@ public class PlayerAttack : MonoBehaviour
     void Start()
     {
         damage = 20;
-        attackRange = 1f;
+        attackRange = 1.5f;
         attackRate = 2f;
     }
 
@@ -59,7 +59,7 @@ public class PlayerAttack : MonoBehaviour
         // Damage them
         foreach (var enemy in hitedEnemies)
         {
-            enemy.GetComponent<Enemy>().TakeDamage(damage);
+            enemy.GetComponent<EnemyHealth>().TakeDamage(damage);
         }
     }
 
