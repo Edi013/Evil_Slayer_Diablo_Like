@@ -1,10 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
     public Animator animator;
+    public GameObject player;
 
     public Transform attackPoint;
     public LayerMask playersLayer;
@@ -32,12 +35,18 @@ public class EnemyAttack : MonoBehaviour
 
             if (hitedEnemies == null || hitedEnemies.Length == 0)
             {
+                Move();
                 return;
             }
 
             StartCoroutine(Attack());
             nextAttackTime = Time.time + secondInAttackRateFormula / attackRate;
         }
+    }
+
+    private void Move()
+    {
+        GetComponent<EnemyFollowsPlayer>().MoveTowardsPlayer();
     }
 
     private IEnumerator Attack()

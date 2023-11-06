@@ -123,6 +123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
+  SkeletonGameObject: {fileID: 4135901100937256773}
   animator: {fileID: 1820391371066449103}
 --- !u!61 &174661944444227322
 BoxCollider2D:
