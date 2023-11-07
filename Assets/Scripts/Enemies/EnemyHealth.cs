@@ -9,6 +9,7 @@ public class EnemyHealth : MonoBehaviour
 
     public GameObject SkeletonGameObject;
     public Animator animator;
+    public Score score;
 
     void Start()
     {
@@ -27,6 +28,7 @@ public class EnemyHealth : MonoBehaviour
 
             if(currentHealth <= 0) 
             {
+                score.IncrementScore();
                 Die();
                 return;
             }
