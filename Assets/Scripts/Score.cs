@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,10 +6,11 @@ public class Score : MonoBehaviour
 {
     public Text scoreText;
     public Text cronos;
+
     private int score;
     private float startTime;
 
-    private void Start()
+    void Start()
     {
         score = 0;
         startTime = Time.time;
@@ -19,15 +19,16 @@ public class Score : MonoBehaviour
         DisplayTime();
     }
 
-    private void Update()
+    void Update()
     {
         DisplayTime();
+        UpdateScore(score);
     }
 
     public void IncrementScore()
     {
         Debug.Log("am intrat in increment score");
-        score ++;
+        score++;
         Debug.Log("log2");
         UpdateScore(score);
         Debug.Log("log3");
