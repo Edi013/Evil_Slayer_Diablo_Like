@@ -302,7 +302,7 @@ Transform:
   m_GameObject: {fileID: 34949054}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 53.312, y: 37.4, z: 0}
+  m_LocalPosition: {x: 14.29, y: 14.43, z: 0}
   m_LocalScale: {x: 1.4398959, y: 1.3029686, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -580,7 +580,7 @@ MonoBehaviour:
   positionToSpwanAt: {fileID: 612439114}
   playerPosition: {fileID: 34949059}
   spawnRate: 5
-  canSpawn: 0
+  canSpawn: 1
   enemyPrefabs:
   - {fileID: 4135901100937256773, guid: 951edea31ae8a0f4e8b89cdef7aa427c, type: 3}
 --- !u!4 &622624114 stripped
