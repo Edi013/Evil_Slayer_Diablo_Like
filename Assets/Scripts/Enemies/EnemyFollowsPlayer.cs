@@ -3,19 +3,40 @@ using UnityEngine.AI;
 
 public class EnemyFollowsPlayer : MonoBehaviour
 {
-    public Transform target; 
-    NavMeshAgent agent;
+    public Transform Destination; 
+    public Transform StartLocation; 
 
-    void Start()
+    private const float ValueToMapStepWith = 0.01f;
+
+    public int RangeToStopAtFromDestination = 1;
+    public float GivenStep = 1f;
+    private float actualStep;
+
+    private void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
+        actualStep = GivenStep * ValueToMapStepWith;
     }
 
     public void MoveTowardsPlayer()
     {
-        if (target != null)
+
+        if (Destination != null)
         {
-            agent.SetDestination(target.position);
+            if (Destination.position.x > StartLocation.position.x + RangeToStopAtFromDestination)
+                StartLocation.position =
+                    new Vector3(StartLocation.position.x + actualStep, StartLocation.position.y, StartLocation.position.z);
+            else
+            if (Destination.position.x < StartLocation.position.x - RangeToStopAtFromDestination)
+                StartLocation.position =
+                    new Vector3(StartLocation.position.x - actualStep, StartLocation.position.y, StartLocation.position.z);
+            else
+            if (Destination.position.y > StartLocation.position.y + RangeToStopAtFromDestination)
+                StartLocation.position =
+                    new Vector3(StartLocation.position.x, StartLocation.position.y + actualStep, StartLocation.position.z);
+            else
+            if (Destination.position.y < StartLocation.position.y + RangeToStopAtFromDestination)
+                StartLocation.position =
+                    new Vector3(StartLocation.position.x + actualStep, StartLocation.position.y - actualStep, StartLocation.position.z);
         }
     }
 }
