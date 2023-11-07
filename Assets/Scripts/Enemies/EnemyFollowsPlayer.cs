@@ -20,37 +20,55 @@ public class EnemyFollowsPlayer : MonoBehaviour
         actualStep = GivenStep * ValueToMapStepWith;
     }
 
+    private void Update()
+    {
+        // if this check doesn't exists, the enemy will push you while you hit it
+        // It's not a but, it's a feature :)
+        // Knockback system by mistake implementation
+        if (GetComponent<EnemyAttack>().isHitDelay)
+        {
+            return;   
+        }
+        MoveTowardsPlayer();
+    }
+
+
     public void MoveTowardsPlayer()
     {
-        if (Destination != null)
+        if (Destination == null)
+            return;
+
+        Animator.SetFloat("Speed", 1);
+        if (Destination.position.x > StartLocation.position.x + RangeToStopAtFromDestination)
         {
-            if (Destination.position.x > StartLocation.position.x + RangeToStopAtFromDestination)
-            {
-                StartLocation.position =
-                    new Vector3(StartLocation.position.x + actualStep, StartLocation.position.y, StartLocation.position.z);
-                SetSpeedParameterInAnimatorController(StartLocation.position.x, StartLocation.position.y);
-            }
-            else
-            if (Destination.position.x < StartLocation.position.x - RangeToStopAtFromDestination)
-            {
-                StartLocation.position =
-                    new Vector3(StartLocation.position.x - actualStep, StartLocation.position.y, StartLocation.position.z);
-                SetSpeedParameterInAnimatorController(StartLocation.position.x, StartLocation.position.y);
-            }
-            else
-            if (Destination.position.y > StartLocation.position.y + RangeToStopAtFromDestination)
-            {
-                StartLocation.position =
-                    new Vector3(StartLocation.position.x, StartLocation.position.y + actualStep, StartLocation.position.z);
-                SetSpeedParameterInAnimatorController(StartLocation.position.x, StartLocation.position.y);
-            }
-            else
-            if (Destination.position.y < StartLocation.position.y + RangeToStopAtFromDestination)
-            {
-                StartLocation.position =
-                    new Vector3(StartLocation.position.x + actualStep, StartLocation.position.y - actualStep, StartLocation.position.z);
-                SetSpeedParameterInAnimatorController(StartLocation.position.x, StartLocation.position.y);
-            }
+            StartLocation.position =
+                new Vector3(StartLocation.position.x + actualStep, StartLocation.position.y, StartLocation.position.z);
+            SetSpeedParameterInAnimatorController(StartLocation.position.x, StartLocation.position.y);
+        }
+        else
+        if (Destination.position.x < StartLocation.position.x - RangeToStopAtFromDestination)
+        {
+            StartLocation.position =
+                new Vector3(StartLocation.position.x - actualStep, StartLocation.position.y, StartLocation.position.z);
+            SetSpeedParameterInAnimatorController(StartLocation.position.x, StartLocation.position.y);
+        }
+        else
+        if (Destination.position.y > StartLocation.position.y + RangeToStopAtFromDestination)
+        {
+            StartLocation.position =
+                new Vector3(StartLocation.position.x, StartLocation.position.y + actualStep, StartLocation.position.z);
+            SetSpeedParameterInAnimatorController(StartLocation.position.x, StartLocation.position.y);
+        }
+        else
+        if (Destination.position.y < StartLocation.position.y + RangeToStopAtFromDestination)
+        {
+            StartLocation.position =
+                new Vector3(StartLocation.position.x + actualStep, StartLocation.position.y - actualStep, StartLocation.position.z);
+            SetSpeedParameterInAnimatorController(StartLocation.position.x, StartLocation.position.y);
+        }
+        else
+        {
+            Animator.SetFloat("Speed", 0);
         }
     }
 
