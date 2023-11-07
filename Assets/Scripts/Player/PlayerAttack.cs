@@ -1,71 +1,84 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    public Animator animator;
+    public Animator Animator;
 
-    public Transform attackPoint;
-    public LayerMask enemyLayers;
+    public Transform AttackPoint;
+    public LayerMask EnemyLayers;
 
-    public int damage = 20;
-    public float attackRange = 1f;
-    public float attackRate = 2f;
-    private float nextAttackTime = 0f;
-    private bool alreadyAttacking = false;
-    private float secondInAttackRateFormula = 1f;
+    public int Damage = 20;
+    public float AttackRange = 1f;
+    public float AttackRate = 2f;
+    private float NextAttackTime = 0f;
+    private bool AlreadyAttacking = false;
+    private float SecondInAttackRateFormula = 1f;
 
     void Start()
     {
-        damage = 20;
-        attackRange = 1.5f;
-        attackRate = 2f;
+        Damage = 20;
+        AttackRange = 1.5f;
+        AttackRate = 2f;
     }
 
     void Update()
     {
-        if(Time.time >= nextAttackTime)
+        CheckMovement();
+
+        if (Time.time >= NextAttackTime)
         {
             // verifici daca deja ataca ( deja este butonul de atac apasat ), atunci faci direct damage.
-            if (alreadyAttacking)
+            if (AlreadyAttacking)
             {
                 Attack();
-                nextAttackTime = Time.time + secondInAttackRateFormula / attackRate;
+                NextAttackTime = Time.time + SecondInAttackRateFormula / AttackRate;
             }
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                Debug.Log("sunt intrat pe space down");
                 Attack();
-                nextAttackTime = Time.time + secondInAttackRateFormula / attackRate;
+                NextAttackTime = Time.time + SecondInAttackRateFormula / AttackRate;
             }
         }
-        
+
         if (Input.GetKeyUp(KeyCode.Space))
         {
             StopAttacking();
         }
     }
 
+    private void CheckMovement()
+    {
+        var currentSpeed = GetComponent<PlayerMovement>().Movement.sqrMagnitude;
+        if (currentSpeed != 0)
+        {
+            StopAttacking();
+            return;
+        }
+    }
+
+
     private void Attack()
     {
         // Attack animation
-        animator.SetTrigger("Attacking");
-        alreadyAttacking = true;
+        Animator.SetTrigger("Attacking");
+        AlreadyAttacking = true;
 
         // Detect enemies in range of attack
-        Collider2D[] hitedEnemies =  Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+        Collider2D[] hitedEnemies =  Physics2D.OverlapCircleAll(AttackPoint.position, AttackRange, EnemyLayers);
 
         // Damage them
         foreach (var enemy in hitedEnemies)
         {
-            enemy.GetComponent<EnemyHealth>().TakeDamage(damage);
+            enemy.GetComponent<EnemyHealth>().TakeDamage(Damage);
         }
     }
 
     private void StopAttacking()
     {
-        animator.ResetTrigger("Attacking");
-        alreadyAttacking = false;
+        Animator.ResetTrigger("Attacking");
+        AlreadyAttacking = false;
     }
 }
