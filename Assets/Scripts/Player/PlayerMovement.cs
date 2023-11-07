@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform LowerLeft;
     public Transform LowerRight;
     public Transform Player;
+    public Transform PlayerGroundLevel;
 
     public float MovementSpeed;
     public float CurrentMovementSpeed;
@@ -53,18 +54,18 @@ public class PlayerMovement : MonoBehaviour
     private void BoundriesCheck()
     {
         Vector3 newPosition = Player.position;
-
-        if (newPosition.x < minX)
+        
+        if (Player.position.x < minX)
             newPosition.x = minX;
         else 
-        if (newPosition.x > maxX)
+        if (Player.position.x > maxX)
             newPosition.x = maxX;
         else 
-        if (newPosition.y < minY)
-            newPosition.y = minY;
-        else 
-        if (newPosition.y > maxY)
-            newPosition.y = maxY;
+        if (PlayerGroundLevel.position.y < minY)
+            newPosition.y = minY + System.Math.Abs(Player.position.y - PlayerGroundLevel.position.y);
+        else
+        if (PlayerGroundLevel.position.y > maxY)
+            newPosition.y = maxY + System.Math.Abs(Player.position.y - PlayerGroundLevel.position.y);
 
         Player.position = newPosition;
     }

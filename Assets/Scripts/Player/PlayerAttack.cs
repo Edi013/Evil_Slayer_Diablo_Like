@@ -52,7 +52,7 @@ public class PlayerAttack : MonoBehaviour
 
     private bool IsMoving()
     {
-        var currentSpeed = GetComponent<PlayerMovement>().CurrentMovementSpeed;
+        var currentSpeed = GetComponent<PlayerMovement>().GetCurrentMovementSpeed();
         if (currentSpeed != 0)
         {
             StopAttacking();
