@@ -17,6 +17,8 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        GetComponent<EnemyAttack>().DelayAttack();
+
         if(currentHealth > 0)
         {
             currentHealth -= damage;

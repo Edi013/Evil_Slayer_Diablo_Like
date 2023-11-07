@@ -15,9 +15,12 @@ public class EnemyAttack : MonoBehaviour
     public int damage = 5;
     public float attackRange = 1f;
     public float attackRate = 1f;
+
     private float nextAttackTime = 0f;
-    private float secondInAttackRateFormula = 2f;
+    private float secondsInAttackRateFormula = 2f;
     private float animationDuration = 0.7f;
+    private bool isHitDelay = false;
+
 
     void Start()
     {
@@ -28,22 +31,32 @@ public class EnemyAttack : MonoBehaviour
 
     void Update()
     {
+
+
         if (Time.time >= nextAttackTime)
         {
+            if (isHitDelay)
+            {
+                isHitDelay = false;
+                nextAttackTime += Time.time + 1.5f * secondsInAttackRateFormula / attackRate;
+            }
 
             Collider2D[] hitedEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playersLayer);
 
             if (hitedEnemies == null || hitedEnemies.Length == 0)
-            {
-                Move();
                 return;
-            }
 
             StartCoroutine(Attack());
-            nextAttackTime = Time.time + secondInAttackRateFormula / attackRate;
+
+            if(!isHitDelay)
+                nextAttackTime = Time.time + secondsInAttackRateFormula / attackRate;
         }
     }
 
+    public void DelayAttack()
+    {
+        isHitDelay = true;
+    }
     private void Move()
     {
         GetComponent<EnemyFollowsPlayer>().MoveTowardsPlayer();
