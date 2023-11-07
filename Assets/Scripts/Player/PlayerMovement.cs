@@ -1,14 +1,23 @@
-﻿using UnityEngine;
+﻿using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.UIElements;
+
 [RequireComponent(typeof(BoxCollider2D))]
 
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float MovementSpeed;
-    public float CurrentMovementSpeed;
     public Rigidbody2D Rigidbody;
     public Animator Animator;
     public Vector2 Movement;
+    public Transform UpperLeft;
+    public Transform UpperRight;
+    public Transform LowerLeft;
+    public Transform LowerRight;
+    public Transform Player;
+
+    public float MovementSpeed;
+    public float CurrentMovementSpeed;
 
     private float  minX;
     private float  maxX;
@@ -18,31 +27,50 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         MovementSpeed = 4f;
-        minX = GetComponent<BackgroundBoundries>().UpperLeftBoundry.transform.position.x;
-        maxX = GetComponent<BackgroundBoundries>().UpperRightBoundry.transform.position.x;
-        minY = GetComponent<BackgroundBoundries>().UpperRightBoundry.transform.position.y;
-        maxY = GetComponent<BackgroundBoundries>().LowerRightBoundry.transform.position.y;
+        minX = UpperLeft.position.x;
+        maxX = UpperRight.position.x;
+        minY = LowerRight.position.y;
+        maxY = UpperRight.position.y; 
     }
-    // Update is called once per frame
+
     private void Update()
     {
         Movement.x = Input.GetAxisRaw("Horizontal");
         Movement.y = Input.GetAxisRaw("Vertical");
 
-        CurrentMovementSpeed = Movement.sqrMagnitude;
+        BoundriesCheck();
 
-        
-
-        Animator.SetFloat("Horizontal", Mathf.Clamp(Movement.x, minX, maxX)); // math
-        Animator.SetFloat("Vertical", Mathf.Clamp(Movement.y, minX, maxX) );
+        Animator.SetFloat("Horizontal", Movement.x);
+        Animator.SetFloat("Vertical", Movement.y);
         Animator.SetFloat("Speed", Movement.sqrMagnitude);
     }
 
-    // Movement
+    public float GetCurrentMovementSpeed()
+    {
+        return Movement.sqrMagnitude;
+    }
+
+    private void BoundriesCheck()
+    {
+        Vector3 newPosition = Player.position;
+
+        if (newPosition.x < minX)
+            newPosition.x = minX;
+        else 
+        if (newPosition.x > maxX)
+            newPosition.x = maxX;
+        else 
+        if (newPosition.y < minY)
+            newPosition.y = minY;
+        else 
+        if (newPosition.y > maxY)
+            newPosition.y = maxY;
+
+        Player.position = newPosition;
+    }
     private void FixedUpdate()
     {
         Rigidbody.MovePosition(Rigidbody.position + Movement * MovementSpeed * Time.fixedDeltaTime);
     }
-
 }
 
