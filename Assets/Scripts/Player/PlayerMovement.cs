@@ -10,9 +10,18 @@ public class PlayerMovement : MonoBehaviour
     public Animator Animator;
     public Vector2 Movement;
 
+    private float  minX;
+    private float  maxX;
+    private float  minY;
+    private float  maxY;
+
     void Start()
     {
         MovementSpeed = 4f;
+        minX = GetComponent<BackgroundBoundries>().UpperLeftBoundry.transform.position.x;
+        maxX = GetComponent<BackgroundBoundries>().UpperRightBoundry.transform.position.x;
+        minY = GetComponent<BackgroundBoundries>().UpperRightBoundry.transform.position.y;
+        maxY = GetComponent<BackgroundBoundries>().LowerRightBoundry.transform.position.y;
     }
     // Update is called once per frame
     private void Update()
@@ -22,8 +31,10 @@ public class PlayerMovement : MonoBehaviour
 
         CurrentMovementSpeed = Movement.sqrMagnitude;
 
-        Animator.SetFloat("Horizontal", Movement.x);
-        Animator.SetFloat("Vertical", Movement.y);
+        
+
+        Animator.SetFloat("Horizontal", Mathf.Clamp(Movement.x, minX, maxX)); // math
+        Animator.SetFloat("Vertical", Mathf.Clamp(Movement.y, minX, maxX) );
         Animator.SetFloat("Speed", Movement.sqrMagnitude);
     }
 

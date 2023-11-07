@@ -15,11 +15,11 @@ public class EnemyAttack : MonoBehaviour
     public int damage = 5;
     public float attackRange = 1f;
     public float attackRate = 1f;
+    public bool isHitDelay = false;
 
     private float nextAttackTime = 0f;
     private float secondsInAttackRateFormula = 2f;
     private float animationDuration = 0.7f;
-    private bool isHitDelay = false;
 
 
     void Start()
