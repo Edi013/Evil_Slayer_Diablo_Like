@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     public Animator Animator;
+    public Healthbar Healthbar;
 
     public int maxHealth = 100;
     public int currentHealth;
@@ -12,6 +13,7 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
+        Healthbar.SetMaxHealth(maxHealth);
     }
 
     public void TakeDamage(int damage)
@@ -19,11 +21,13 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth > 0)
         {
             currentHealth -= damage;
+            Healthbar.SetHealth(currentHealth);
 
             Animator.SetTrigger("TakeHit");
 
             if (currentHealth <= 0)
             {
+                Healthbar.SetHealth(0);
                 Die();
             }
         }
