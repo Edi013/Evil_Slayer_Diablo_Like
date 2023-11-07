@@ -26,7 +26,8 @@ public class PlayerAttack : MonoBehaviour
 
     void Update()
     {
-        CheckMovement();
+        if (IsMoving())
+            return;
 
         if (Time.time >= NextAttackTime)
         {
@@ -49,14 +50,16 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    private void CheckMovement()
+    private bool IsMoving()
     {
-        var currentSpeed = GetComponent<PlayerMovement>().Movement.sqrMagnitude;
+        var currentSpeed = GetComponent<PlayerMovement>().CurrentMovementSpeed;
         if (currentSpeed != 0)
         {
             StopAttacking();
-            return;
+            return true;
         }
+
+        return false;
     }
 
 

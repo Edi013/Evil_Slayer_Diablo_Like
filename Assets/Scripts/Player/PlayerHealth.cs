@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public Animator animator;
+    public Animator Animator;
 
     public int maxHealth = 100;
     public int currentHealth;
@@ -20,7 +20,7 @@ public class PlayerHealth : MonoBehaviour
         {
             currentHealth -= damage;
 
-            animator.SetTrigger("TakeHit");
+            Animator.SetTrigger("TakeHit");
 
             if (currentHealth <= 0)
             {
@@ -31,12 +31,12 @@ public class PlayerHealth : MonoBehaviour
 
     private void Die()
     {
-        Debug.Log("player died");
-
-        animator.SetBool("IsDead", true);
+        Animator.SetBool("IsDead", true);
 
         GetComponent<Collider2D>().enabled = false;
-        this.enabled = false;
-
+        GetComponent<BoxCollider2D>().enabled = false;
+        GetComponent<PlayerMovement>().enabled = false;
+        GetComponent<PlayerAttack>().enabled = false;
+        GetComponent<PlayerHealth>().enabled = false;
     }
 }

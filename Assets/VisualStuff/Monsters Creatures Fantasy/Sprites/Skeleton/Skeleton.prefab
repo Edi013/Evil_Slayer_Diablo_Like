@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 584962513390424903}
   - component: {fileID: 174661944444227322}
   - component: {fileID: 839192064255198948}
+  - component: {fileID: 2005746897801052644}
   m_Layer: 3
   m_Name: Skeleton
   m_TagString: Untagged
@@ -29,8 +30,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4135901100937256773}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 18.75, y: 13.9, z: 10}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 19.53, y: 15.68, z: 0}
   m_LocalScale: {x: 2.2, y: 2.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -183,6 +184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1820391371066449103}
+  player: {fileID: 0}
   attackPoint: {fileID: 9113903595530238850}
   playersLayer:
     serializedVersion: 2
@@ -190,3 +192,20 @@ MonoBehaviour:
   damage: 5
   attackRange: 1
   attackRate: 1
+--- !u!114 &2005746897801052644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4135901100937256773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62c3031ba4c409e44b1cd9ec8ad3824e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Destination: {fileID: 0}
+  StartLocation: {fileID: 9113903595530238850}
+  Animator: {fileID: 1820391371066449103}
+  RangeToStopAtFromDestination: 1
+  GivenStep: 1

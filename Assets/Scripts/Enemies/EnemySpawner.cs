@@ -5,11 +5,10 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] public Transform positionToSpwanAt;
+    [SerializeField] public Transform playerPosition;
     [SerializeField] private float spawnRate = 1.0f;
     [SerializeField] private bool canSpawn;
     [SerializeField] private GameObject[] enemyPrefabs;
-
-    
 
     private void Start()
     {
@@ -27,7 +26,8 @@ public class EnemySpawner : MonoBehaviour
             int indexOfEnemyPrefabToSpawn = Random.Range(0, enemyPrefabs.Length);
             GameObject enemyPrefabToSpawn = enemyPrefabs[indexOfEnemyPrefabToSpawn];
 
-            Instantiate(enemyPrefabToSpawn, positionToSpwanAt.position, Quaternion.identity);
+            var createdInstance = Instantiate(enemyPrefabToSpawn, positionToSpwanAt.position, Quaternion.identity);
+            createdInstance.GetComponent<EnemyFollowsPlayer>().Destination = playerPosition;
         }
 
     }

@@ -26,6 +26,7 @@ public class EnemyHealth : MonoBehaviour
             if(currentHealth <= 0) 
             {
                 Die();
+                return;
             }
         }
     }
@@ -35,6 +36,8 @@ public class EnemyHealth : MonoBehaviour
         animator.SetBool("IsDead", true);
 
         GetComponent<Collider2D>().enabled = false;
+        GetComponent<BoxCollider2D>().enabled = false;
+        GetComponent<EnemyFollowsPlayer>().enabled = false;
         GetComponent<EnemyAttack>().enabled = false;
         GetComponent<EnemyHealth>().enabled = false;
     }
