@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,11 +6,11 @@ public class GameManager : MonoBehaviour
     public Transform EndScreen;
     public Transform Player;
 
-    private bool IsOn = false;
+    private bool IsOn = true;
 
     public void EndGame()
     {
-        Debug.Log("Game Over");
+        IsOn = false;    
         if(!IsOn)
         {
             DisplayEndScreen();
@@ -27,13 +26,9 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
     public void MainMenuRedirect()
     {
         SceneManager.LoadScene("MainMenu");
-    }
-
-    public void StartGame()
-    {
-        IsOn = true;
     }
 }

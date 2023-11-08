@@ -1,6 +1,4 @@
-﻿using Unity.VisualScripting;
-using UnityEngine;
-using UnityEngine.UIElements;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D))]
 
@@ -27,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        MovementSpeed = 4f;
+        MovementSpeed = 6f;
         minX = UpperLeft.position.x;
         maxX = UpperRight.position.x;
         minY = LowerRight.position.y;

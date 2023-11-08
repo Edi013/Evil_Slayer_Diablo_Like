@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
@@ -43,8 +41,6 @@ public class PlayerHealth : MonoBehaviour
         GetComponent<PlayerMovement>().enabled = false;
         GetComponent<PlayerAttack>().enabled = false;
         GetComponent<PlayerHealth>().enabled = false;
-
-        new WaitForSeconds(5.0f);
 
         GameManager.EndGame();
     }
