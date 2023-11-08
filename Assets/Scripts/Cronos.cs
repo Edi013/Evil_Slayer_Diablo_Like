@@ -7,15 +7,20 @@ public class Cronos : MonoBehaviour
     public Text cronos;
 
     private float startTime;
+    private bool isOn = true;
 
     void Start()
     {
         startTime = Time.time;
+        isOn = true;
     }
 
     void Update()
     {
-        DisplayTime();
+        if (isOn)
+        {
+            DisplayTime();
+        }
     }
 
     private void DisplayTime()
@@ -25,5 +30,9 @@ public class Cronos : MonoBehaviour
         int minutes = Mathf.FloorToInt(timePassed / 60f);
 
         cronos.text = String.Concat(minutes.ToString(), " m  ", seconds.ToString(), " s  ");
+    }
+    public void StopCounter()
+    {
+        isOn = false;
     }
 }
