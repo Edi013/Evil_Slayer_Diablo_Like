@@ -6,6 +6,7 @@ public class PlayerHealth : MonoBehaviour
 {
     public Animator Animator;
     public Healthbar Healthbar;
+    public GameManager GameManager;
 
     public int maxHealth = 100;
     public int currentHealth;
@@ -42,5 +43,9 @@ public class PlayerHealth : MonoBehaviour
         GetComponent<PlayerMovement>().enabled = false;
         GetComponent<PlayerAttack>().enabled = false;
         GetComponent<PlayerHealth>().enabled = false;
+
+        new WaitForSeconds(5.0f);
+
+        GameManager.EndGame();
     }
 }
