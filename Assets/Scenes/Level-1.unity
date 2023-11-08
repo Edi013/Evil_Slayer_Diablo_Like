@@ -366,7 +366,7 @@ MonoBehaviour:
   Animator: {fileID: 34949060}
   Healthbar: {fileID: 1581248544}
   GameManager: {fileID: 248313496}
-  maxHealth: 100
+  maxHealth: 1
   currentHealth: 0
 --- !u!1 &37609794
 GameObject:
@@ -1611,6 +1611,18 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 248313496}
+    - target: {fileID: 1813728421826172937, guid: b56476c42f988704c83e2d0a3fe7b764, type: 3}
+      propertyPath: m_ScaleFactor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1813728421826172937, guid: b56476c42f988704c83e2d0a3fe7b764, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1813728421826172937, guid: b56476c42f988704c83e2d0a3fe7b764, type: 3}
+      propertyPath: m_ReferencePixelsPerUnit
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 2541265426112237113, guid: b56476c42f988704c83e2d0a3fe7b764, type: 3}
       propertyPath: m_Text
       value: Uninitialized
@@ -1660,6 +1672,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4504143945005784191, guid: b56476c42f988704c83e2d0a3fe7b764, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 39
+      objectReference: {fileID: 0}
+    - target: {fileID: 4504143945005784191, guid: b56476c42f988704c83e2d0a3fe7b764, type: 3}
       propertyPath: m_SizeDelta.y
       value: 36
       objectReference: {fileID: 0}
@@ -1669,7 +1685,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4504143945005784191, guid: b56476c42f988704c83e2d0a3fe7b764, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 19.500038
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 4504143945005784191, guid: b56476c42f988704c83e2d0a3fe7b764, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1697,11 +1713,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4865305207618857797, guid: b56476c42f988704c83e2d0a3fe7b764, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -135.71
+      value: -128.67
       objectReference: {fileID: 0}
     - target: {fileID: 4865305207618857797, guid: b56476c42f988704c83e2d0a3fe7b764, type: 3}
       propertyPath: m_SizeDelta.y
-      value: -9.83
+      value: -11.495
       objectReference: {fileID: 0}
     - target: {fileID: 4865305207618857797, guid: b56476c42f988704c83e2d0a3fe7b764, type: 3}
       propertyPath: m_LocalScale.x
@@ -1713,11 +1729,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4865305207618857797, guid: b56476c42f988704c83e2d0a3fe7b764, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -1.0949707
+      value: 5.2404785
       objectReference: {fileID: 0}
     - target: {fileID: 4865305207618857797, guid: b56476c42f988704c83e2d0a3fe7b764, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.7699585
+      value: -2.2650146
       objectReference: {fileID: 0}
     - target: {fileID: 4891976614122528525, guid: b56476c42f988704c83e2d0a3fe7b764, type: 3}
       propertyPath: m_Camera
@@ -1726,6 +1742,10 @@ PrefabInstance:
     - target: {fileID: 4891976614122528525, guid: b56476c42f988704c83e2d0a3fe7b764, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4891976614122528525, guid: b56476c42f988704c83e2d0a3fe7b764, type: 3}
+      propertyPath: m_UpdateRectTransformForStandalone
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5029861647664300412, guid: b56476c42f988704c83e2d0a3fe7b764, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
