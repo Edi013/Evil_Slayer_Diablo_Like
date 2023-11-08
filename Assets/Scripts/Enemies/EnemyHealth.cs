@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
@@ -7,13 +5,15 @@ public class EnemyHealth : MonoBehaviour
     public int maxHealth = 100;
     public int currentHealth;
 
-    public GameObject SkeletonGameObject;
     public Animator animator;
-    public Score score;
+
+    private Score score;
 
     void Start()
     {
-        currentHealth = maxHealth;    
+        currentHealth = maxHealth;
+        var scoreText = GameObject.Find("ScoreText");
+        score = scoreText.GetComponent<Score>();
     }
 
     public void TakeDamage(int damage)
@@ -26,7 +26,7 @@ public class EnemyHealth : MonoBehaviour
 
             animator.SetTrigger("TakeHit");
 
-            if(currentHealth <= 0) 
+            if(currentHealth <= 0)
             {
                 score.IncrementScore();
                 Die();
@@ -42,7 +42,5 @@ public class EnemyHealth : MonoBehaviour
         GetComponent<Collider2D>().enabled = false;
         GetComponent<BoxCollider2D>().enabled = false;
         GetComponent<EnemyFollowsPlayer>().enabled = false;
-        GetComponent<EnemyAttack>().enabled = false;
-        GetComponent<EnemyHealth>().enabled = false;
     }
 }

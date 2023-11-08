@@ -7,8 +7,6 @@ using UnityEngine;
 public class EnemyAttack : MonoBehaviour
 {
     public Animator animator;
-    public GameObject player;
-
     public Transform attackPoint;
     public LayerMask playersLayer;
 
@@ -31,10 +29,8 @@ public class EnemyAttack : MonoBehaviour
 
     void Update()
     {
-
-
         if (Time.time >= nextAttackTime)
-        {
+        { 
             if (isHitDelay)
             {
                 isHitDelay = false;
@@ -57,10 +53,6 @@ public class EnemyAttack : MonoBehaviour
     {
         isHitDelay = true;
     }
-    private void Move()
-    {
-        GetComponent<EnemyFollowsPlayer>().MoveTowardsPlayer();
-    }
 
     private IEnumerator Attack()
     {
@@ -72,7 +64,7 @@ public class EnemyAttack : MonoBehaviour
 
         // Detect enemies in range of attack
         Collider2D[] hitedEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playersLayer);
-        
+
         // Damage them
         foreach (var enemy in hitedEnemies)
         {
