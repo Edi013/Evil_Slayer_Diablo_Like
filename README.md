@@ -6,6 +6,6 @@ The main character has a part of it's sprite open source, some of it is drawn by
 The enemies's sprites are open source.
 
 Tools:
- Unity - Develop the game
- Asesprite - Draw the sprites
+ - Unity - Develop the game
+ - Asesprite - Draw the sprites
  
